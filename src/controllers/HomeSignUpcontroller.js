@@ -11,7 +11,7 @@ module.exports = class SignUpController {
   static async SignUpPostController(req, res) {
     
     try {
-      const { name, email, phone, password} = req.body
+      const { name, email, phone, password} = await SignUpValidation(req.body)
         
       const user = await users.create({
           name,

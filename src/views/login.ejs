@@ -1,4 +1,5 @@
 <%- include("./parts/header.ejs")  %> 
+<% var error %> 
    
 <section>
     <div class="container mt-4">
@@ -7,7 +8,12 @@
                 Login
             </h2>
             <div class="col-sm-6 col-10  mt-3">
-                <form action="/login" method="POST" autocomplete="off">
+                <% if(error) { %> 
+                    <div class="alert alert-danger">
+                        <%= error  %> 
+                    </div>
+                <% } %> 
+                <form method="POST" autocomplete="off" enctype="application/x-www-form-urlencoded">
                     <input type="email" placeholder="Emailingizni kiriting" name="email" class="form-control" required autocomplete="off">
                     <input type="password" name="password" placeholder="Parolni kiriting" class="form-control mt-2" required autocomplete="off">
                     <button type="submit" class="btn mt-2 w-100 btn-primary">

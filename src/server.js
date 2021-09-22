@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser")
 const path = require("path");
 const databaseMiddleware = require("./middlewares/DatabaseMiddleware");
 const routes = require("./routes/routes");
+const AuthMiddleware = require("./middlewares/AuthMiddleware");
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,6 +28,7 @@ async function server() {
         app.use(cookieParser())
         app.use(express.static(path.join(__dirname, "src", "public")))
         app.use(databaseMiddleware)
+        app.use(AuthMiddleware)
 
 
         // settings 

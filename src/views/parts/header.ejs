@@ -1,3 +1,6 @@
+<% var user  %> 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,15 +26,26 @@
 
               <div class="collapse navbar-collapse"  id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                 <% if(user) { %>   
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/sign_up">Sign up</a>
-                  </li> 
-                  <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                  </li>  
+                    <a class="nav-link active" aria-current="page" href="/profile"><%= user.name  %> </a>
+                  </li>
+
+                  <% } else { %> 
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/sign_up">Sign up</a>
+                    </li> 
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login">Login</a>
+                    </li>
+
+                    <% } %> 
                 </ul>
                
               </div>
