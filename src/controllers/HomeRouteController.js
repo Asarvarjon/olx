@@ -13,6 +13,17 @@ module.exports = class HomeRouteController {
         })
     }
 
+    static async ProductDetail(req, res) { 
+      const detail = await products.findOne({
+        _id: req.params.id
+      })
+ 
+      res.render("detail", {
+        user: req.user,
+        detail,
+      })
+    }
+
 
     
 }

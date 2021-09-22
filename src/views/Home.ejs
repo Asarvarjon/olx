@@ -39,7 +39,9 @@
                <% for(let item of productsList.reverse()) { %> 
                     <div class="col-lg-4">
                         <div class="card" style="width: 19rem;">
-                            <img src="/files/<%=item.photo%>" class="card-img-top" style="height: 170px" alt="photo">
+                           <div class="w-100 " style="height: 200px;" >
+                            <img src="/files/<%=item.photo%>" class="card-img-top" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="photo">
+                           </div>
                             <div class="card-body">
                                 <h4 class="text-danger">
                                    Narxi: <%= item.price  %> 
@@ -47,7 +49,7 @@
                             <h5 class="card-title"><%= item.name%> </h5>  
                             <p class="card-text"><%= item.content  %> </p>
 
-                            <a href="#" class="btn btn-primary">
+                            <a href="/details/<%= item._id%>" class="btn btn-primary">
                                 Batafsil
                             </a>
                             </div>

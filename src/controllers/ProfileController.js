@@ -30,13 +30,14 @@ module.exports = class ProfileController {
 
 
   static async AddProductPostController(req, res) {
-    const {name, content, category, price} = req.body;  
+    const {name, content, phone, category, price} = req.body;  
 
     await req.files.file.mv(path.join(__dirname, "..", "public", "files", req.files.file.name))
 
     const product = await products.create({
       name,
       price,
+      phone,
       photo: req.files.file.name,
       content,
       category
@@ -45,4 +46,5 @@ module.exports = class ProfileController {
     console.log(product);
     res.redirect("/profile")
   }
+ 
 }
