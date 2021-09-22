@@ -1,4 +1,5 @@
 <%- include("./parts/header.ejs")  %> 
+<% var error %> 
    
 <section>
     <div class="container mt-4">
@@ -6,8 +7,14 @@
             <h2 class="text-center">
                 Sign up
             </h2>
+            
             <div class="col-sm-6 col-10  mt-3">
-                <form action="/login" method="POST" autocomplete="off">
+                <% if(error) { %> 
+                    <div class="alert alert-danger">
+                        <%= error  %> 
+                    </div>
+                <% } %> 
+                <form action="/sign_up" method="POST" autocomplete="off">
                     <input type="text" name="name" placeholder="Ismingizni kiriting" class="form-control mt-2" required autocomplete="off">
                     <input type="email" placeholder="Emailingizni kiriting" name="email" class="form-control mt-2" required autocomplete="off">
                     <input type="tel" name="phone" placeholder="Raqamingizni kiriting" class="form-control mt-2" required autocomplete="off">
