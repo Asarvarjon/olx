@@ -1,14 +1,15 @@
+const categories = require("../models/CategoryModel")
+
 module.exports = class HomeRouteController { 
       static async HomeGetController(req, res) {
+        const list = await categories.find()
+
         res.render("Home", {
-          user: req.user
+          user: req.user,
+          list,
         })
     }
 
 
-    static async ProfileUserGetController(req, res) {
-      res.render("profile", {
-        user: req.user,
-      })
-    }
+    
 }

@@ -1,5 +1,31 @@
 <%- include("./parts/header.ejs")  %> 
+<% var list = list || [] %> 
    
+
+<section class="mt-4">
+    <div class="container">
+        <h3 class="text-center">
+            Kategoriyalar
+        </h3>
+
+        <div class="row">
+            <% if(list) { %> 
+               <% for(let item of list) { %> 
+                    <div class="col-lg-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="public/images/<%= item.photo%>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title"><%= item.name%> </h5> 
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %> 
+             <% } %> 
+        </div>
+        
+    </div>
+</section>
  
 
 
