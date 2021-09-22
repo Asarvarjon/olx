@@ -1,0 +1,29 @@
+<%- include("./parts/header.ejs")  %> 
+   
+<section>
+    <div class="container mt-4">
+        <div class="row mt-5 d-flex flex-column align-items-center">
+            <h2 class="text-center">
+                Login
+            </h2>
+            <div class="col-sm-6 col-10  mt-3">
+                <form action="/login" method="POST" autocomplete="off">
+                    <input type="email" placeholder="Emailingizni kiriting" name="email" class="form-control" required autocomplete="off">
+                    <input type="password" name="password" placeholder="Parolni kiriting" class="form-control mt-2" required autocomplete="off">
+                    <button type="submit" class="btn mt-2 w-100 btn-primary">
+                        Login
+                    </button>
+                </form>
+                <div class="mt-2 text-center">
+                    Don't you have account? 
+                    <a href="/sign_up">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<%- include("./parts/footer.ejs")  %> 
+
+
