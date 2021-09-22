@@ -4,4 +4,11 @@ module.exports = class HomeRouteController {
           user: req.user
         })
     }
+
+
+    static async ProfileUserGetController(req, res) {
+      res.render("profile", {
+        user: req.user,
+      })
+    }
 }
