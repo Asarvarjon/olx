@@ -1,5 +1,7 @@
 <%- include("./parts/header.ejs")  %> 
 <% var list = list || [] %> 
+<% var productsList = productsList || [] %> 
+
    
 
 <section class="mt-4">
@@ -8,15 +10,14 @@
             Kategoriyalar
         </h3>
 
-        <div class="row">
+        <div class="row mt-3 gy-3">
             <% if(list) { %> 
                <% for(let item of list) { %> 
-                    <div class="col-lg-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="public/images/<%= item.photo%>" class="card-img-top" alt="...">
+                    <div class="col-lg-3">
+                        <div class="card" style="width: 16rem;">
+                            <img src="/images/<%=item.photo%>" class="card-img-top" style="height: 170px" alt="photo">
                             <div class="card-body">
-                            <h5 class="card-title"><%= item.name%> </h5> 
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title"><%= item.name%> </h5>  
                             </div>
                         </div>
                     </div>
@@ -26,6 +27,36 @@
         
     </div>
 </section>
+
+<main class="mt-4">
+    <div class="container">
+        <h3 class="text-center text-info">
+            Eng yangi mahsulotlar   
+        </h3>
+
+
+        <div class="row mt-3 gy-3"> 
+               <% for(let item of productsList.reverse()) { %> 
+                    <div class="col-lg-4">
+                        <div class="card" style="width: 19rem;">
+                            <img src="/files/<%=item.photo%>" class="card-img-top" style="height: 170px" alt="photo">
+                            <div class="card-body">
+                                <h4 class="text-danger">
+                                   Narxi: <%= item.price  %> 
+                                </h4>
+                            <h5 class="card-title"><%= item.name%> </h5>  
+                            <p class="card-text"><%= item.content  %> </p>
+
+                            <a href="#" class="btn btn-primary">
+                                Batafsil
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>  
+        </div>
+    </div>
+</main>
  
 
 

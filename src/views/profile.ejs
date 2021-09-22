@@ -1,4 +1,6 @@
 <%- include("./parts/header.ejs") %>
+<% var user %> 
+<% var productCategory %> 
 
 <section class="mt-5">
     <div class="container">
@@ -7,11 +9,11 @@
         </h3>
 
         <div class="row mt-3">
-            <div class="col-lg-6">
+            <div class="col-lg-6 d-flex justify-content-center">
                  
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Add category
+                   Kategoriya qo'shish
                 </button>
 
                 <!-- Modal -->
@@ -26,8 +28,8 @@
                             </div>
                             <div class="modal-body">
                                <form method="POST"  enctype="multipart/form-data" action="/add_category">
-                                    <input type="text" class="form-control mt-2" name="name" placeholder="Category name">
-                                    <input type="file" name="file"  class="form-control mt-2" placeholder="Category name">
+                                    <input type="text" class="form-control mt-2" name="name" placeholder="Category name" required>
+                                    <input type="file" name="file"  class="form-control mt-2" placeholder="Category name" required>
                                 <button type="submit" data-bs-dismiss="modal" class="btn mt-2 w-100 btn-primary">
                                     Add
                                 </button>
@@ -37,7 +39,51 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+
+
+            <div class="col-lg-6 d-flex justify-content-center">
+
+                <button type="button" class="btn btn-primary text-center" data-bs-toggle="modal" data-bs-target="#productModal">
+                    Mahsulot qo'shish
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="productModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="staticBackdropLabel">Add category</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                               <form method="POST"  enctype="multipart/form-data" action="/add_product">
+                                    <input type="text" class="form-control mt-2" name="name" placeholder="Mahsulot nomi" required> 
+                                    <input type="number" class="form-control mt-2" name="price" placeholder="Mahsulot narxi" required> 
+                                    <select name="category"  class="form-select mt-2">
+                                        <option value="">
+                                            Kategoriyani tanlang
+                                        </option>
+                                        <% for(let item of productCategory) {%> 
+                                            <option value="<%= item.name  %> ">
+                                                <%= item.name  %> 
+                                            </option>
+                                        <% } %> 
+                                    </select>
+                                    <textarea class="form-control mt-2" name="content" placeholder="Description" rows="10"
+                                    style="height: 200px; resize: none;" required
+                                    ></textarea>
+                                    <input type="file" name="file"  class="form-control mt-2" placeholder="Category name" required>
+                                <button type="submit" data-bs-dismiss="modal" class="btn mt-2 w-100 btn-primary">
+                                    Add
+                                </button>
+                               </form>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             </div>
         </div>
