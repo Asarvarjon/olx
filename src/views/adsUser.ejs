@@ -1,0 +1,76 @@
+<%- include("./parts/header.ejs")  %> 
+<% var productUser %> 
+
+<section>
+    <div class="container mt-4"> 
+                
+                <table class="table table-bordered table-striped table-info">
+                    <thead>
+                        <tr>
+                            <td><h3>Foydalanuvchi </h3></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Foydalanuvchi nomi</td>
+                            <td>
+                                <%= productUser.name  %> 
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Foydalanuvchi raqami</td>
+                            <td>
+                                <%= productUser.phone  %> 
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Foydalanuvchi emaili</td>
+                            <td>
+                                <%= productUser.email  %> 
+                            </td>
+                        </tr> 
+                        
+                    </tbody>  
+                </table>
+
+                <h4 class="text-center mt-5">
+                    Foydalanuvchi e'lonlari
+                </h4>
+
+
+                <div class="row mt-3 gy-3"> 
+                    <% for(let item of productsList.reverse()) { %> 
+                         <div class="col-lg-4">
+                             <div class="card" style="width: 20rem;">
+                                <div class="w-100 " style="height: 200px;" >
+                                 <img src="/files/<%=item.photo%>" class="card-img-top" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="photo">
+                                </div>
+                                 <div class="card-body">
+                                     <h4 class="text-danger">
+                                        Narxi: <%= item.price  %> 
+                                     </h4>
+                                 <h5 class="card-title"><%= item.name%> </h5>  
+                                 <p class="card-text"><%= item.content  %> </p>
+     
+                                 <a href="/details/<%= item._id%>" class="btn btn-primary">
+                                     Batafsil
+                                 </a>
+                                 </div>
+                             </div>
+                         </div>
+                     <% } %>  
+             </div>
+
+                
+        </div>
+    </div>
+</section>
+
+
+
+
+<%- include("./parts/footer.ejs")  %> 

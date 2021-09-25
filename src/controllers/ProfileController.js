@@ -1,12 +1,14 @@
 const categories = require("../models/CategoryModel")
+const users = require("../models/UserModel") 
 const path = require("path")
-const products = require("../models/ProductModel")
+const products = require("../models/ProductModel")  
 
 
 module.exports = class ProfileController {
 
   static async ProfileUserGetController(req, res) {
-    const productCategory = await categories.find()
+    const productCategory = await categories.find()  
+
     res.render("profile", {
       user: req.user,
       productCategory,
@@ -30,21 +32,27 @@ module.exports = class ProfileController {
 
 
   static async AddProductPostController(req, res) {
-    const {name, content, phone, category, price} = req.body;  
+    try {
+        const {name, content, phone, category, price} = req.body;  
 
-    await req.files.file.mv(path.join(__dirname, "..", "public", "files", req.files.file.name))
+        await req.files.file.mv(path.join(__dirname, "..", "public", "files", req.files.file.name))
+          
 
-    const product = await products.create({
-      name,
-      price,
-      phone,
-      photo: req.files.file.name,
-      content,
-      category
-    })
-
-    console.log(product);
-    res.redirect("/profile")
+        const product = await products.create({
+            name,
+            price,
+            phone,
+            photo: req.files.file.name,
+            content, 
+            category_id: category,
+            owner_id: req.user.id,
+        })
+ 
+ 
+      res.redirect("/profile")
+    } catch (error) {
+      console.log(error);
+    }
   }
  
 }

@@ -20,10 +20,15 @@ const ProductSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true,
+    }, 
+    category_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "categories"
     },
-    category: {
-        type: String,
-    }
+    owner_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+    }, 
 }
 )
 
