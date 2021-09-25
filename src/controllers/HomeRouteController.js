@@ -5,7 +5,8 @@ const users = require("../models/UserModel");
 module.exports = class HomeRouteController { 
       static async HomeGetController(req, res) {
         const list = await categories.find();
-        const productsList = await products.find().populate("owner_id")    
+        const productsList = await products.find().populate("owner_id")  
+          
 
         res.render("Home", {
           user: req.user,
@@ -17,9 +18,7 @@ module.exports = class HomeRouteController {
     static async ProductDetail(req, res) { 
       const detail = await products.findOne({
         _id: req.params.id
-      }).populate("owner_id") 
- 
-      const list = await categories.find();
+      }).populate("owner_id").populate("category_id")   
 
       const adsOwner = await products.find({
         _id: req.params.id
@@ -38,13 +37,16 @@ module.exports = class HomeRouteController {
         
       let productUser = await products.findOne({
         owner_id: req.params.id
-      }).populate("owner_id") 
+      }).populate("owner_id").populate("category_id") ;
 
-      console.log(productUser);
+      let ads = await products.find({
+        owner_id: req.params.id
+      })  
    
       res.render("adsUser", {
         user: req.user,
         productUser, 
+        ads
       })
 
  

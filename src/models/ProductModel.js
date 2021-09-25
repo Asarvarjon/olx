@@ -13,16 +13,13 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    photo : {
-        type: String,
-        default: "nophoto.png"
-    },
+    photos : [String],
     content: {
         type: String,
         required: true,
     }, 
     category_id: {
-        type: mongoose.Schema.Types.String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "categories"
     },
     owner_id: {

@@ -60,14 +60,11 @@
                             <div class="modal-body">
                                <form method="POST"  enctype="multipart/form-data" action="/add_product">
                                     <input type="text" class="form-control mt-2" name="name" placeholder="Mahsulot nomi" required> 
-                                    <input type="number" class="form-control mt-2" name="price" placeholder="Mahsulot narxi" required> 
+                                    <input type="text" class="form-control mt-2" name="price" placeholder="Mahsulot narxi" required> 
                                     <input type="number" class="form-control mt-2" name="phone" placeholder="Telefon raqamingiz" required> 
                                     <select name="category"  class="form-select mt-2">
-                                        <option value="">
-                                            Kategoriyani tanlang
-                                        </option>
                                         <% for(let item of productCategory) {%> 
-                                            <option value="<%= item._id  %> ">
+                                            <option value="<%=item._id%>">
                                                 <%= item.name  %> 
                                             </option>
                                         <% } %> 
@@ -75,7 +72,7 @@
                                     <textarea class="form-control mt-2" name="content" placeholder="Description" rows="10"
                                     style="height: 200px; resize: none;" required
                                     ></textarea>
-                                    <input type="file" name="file"  class="form-control mt-2" placeholder="Category name" required>
+                                    <input type="file" name="file" multiple  accept=".png, .jpeg, .jpg"  class="form-control mt-2" placeholder="Category name" required>
                                 <button type="submit" data-bs-dismiss="modal" class="btn mt-2 w-100 btn-primary">
                                     Add
                                 </button>

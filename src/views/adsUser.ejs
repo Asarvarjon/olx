@@ -1,5 +1,6 @@
 <%- include("./parts/header.ejs")  %> 
 <% var productUser %> 
+<% var ads = ads || [] %> 
 
 <section>
     <div class="container mt-4"> 
@@ -42,6 +43,28 @@
                 </h4>
 
 
+                <div class="row mt-3 gy-3"> 
+                    <% for(let item of ads.reverse()) { %> 
+                         <div class="col-lg-4">
+                             <div class="card" style="width: 19rem;">
+                                <div class="w-100 " style="height: 200px;" >
+                                 <img src="/files/<%=item.photos[0]%>" class="card-img-top" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="photo">
+                                </div>
+                                 <div class="card-body">
+                                     <h4 class="text-danger">
+                                        Narxi: <%= item.price  %> 
+                                     </h4>
+                                 <h5 class="card-title"><%= item.name%> </h5>  
+                                 <p class="card-text"><%= item.content  %> </p>
+     
+                                 <a href="/details/<%= item._id%>" class="btn btn-primary">
+                                     Batafsil
+                                 </a>
+                                 </div>
+                             </div>
+                         </div>
+                     <% } %>  
+             </div>
                  
                 
         </div>

@@ -2,6 +2,7 @@ const categories = require("../models/CategoryModel")
 const users = require("../models/UserModel") 
 const path = require("path")
 const products = require("../models/ProductModel")  
+const mongoose = require("mongoose")
 
 
 module.exports = class ProfileController {
@@ -35,18 +36,40 @@ module.exports = class ProfileController {
     try {
         const {name, content, phone, category, price} = req.body;  
 
-        await req.files.file.mv(path.join(__dirname, "..", "public", "files", req.files.file.name))
+         let photos = []; 
+
+         if(Array.isArray(req.files.file)) {
+ 
+           req.files.file.forEach((photo) => {
+            
+            const name = photo.md5 + ".jpg"
+            photo.mv(
+              path.join(__dirname, "..", "public", "files", name)
+            )
+            photos.push(name) 
+          })
+         } else { 
+            const name = req.files.file + ".jpg"
+
+            req.files.file.mv(
+              path.join(__dirname, "..", "public", "files", name)
+            )  
+
+            photos.push(name)
+         } 
+   
           
 
         const product = await products.create({
             name,
             price,
             phone,
-            photo: req.files.file.name,
+            photos,
             content, 
-            category_id: category,
+            category_id: mongoose.Types.ObjectId(category),
             owner_id: req.user.id,
         })
+ 
  
  
       res.redirect("/profile")
