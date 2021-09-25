@@ -38,15 +38,14 @@ module.exports = class HomeRouteController {
         
       let productUser = await products.findOne({
         owner_id: req.params.id
-      }).populate("owner_id").populate("category_id") 
+      }).populate("owner_id") 
 
       console.log(productUser);
    
-      // res.render("adsUser", {
-      //   user: req.user,
-      //   productUser,
-      //   productsList
-      // })
+      res.render("adsUser", {
+        user: req.user,
+        productUser, 
+      })
 
  
     }
