@@ -1,12 +1,12 @@
 const categories = require("../models/CategoryModel")
 const products = require("../models/ProductModel");
+const sessions = require("../models/SessionsModel");
 const users = require("../models/UserModel");
 
 module.exports = class HomeRouteController { 
       static async HomeGetController(req, res) {
         const list = await categories.find();
         const productsList = await products.find().populate("owner_id")  
-          
 
         res.render("Home", {
           user: req.user,
