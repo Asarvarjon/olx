@@ -1,3 +1,4 @@
+const sessions = require("../models/SessionsModel");
 const users = require("../models/UserModel");
 const { compareHash } = require("../modules/bcrypt");
 const { createToken } = require("../modules/jwt");
@@ -21,10 +22,21 @@ module.exports = class LoginController {
 			if (!(await compareHash(password, user.password)))
 				throw new Error("Parol xato");
 
+        await sessions.deleteMany({
+          owner_id: user._id,
+          user_agent: req.headers["user-agent"],
+        })
+
+        const session = await sessions.create({
+          owner_id: user._id,
+          user_agent: req.headers["user-agent"],
+        })
+ 
+
 			res.cookie(
 				"token",
 				await createToken({
-					id: user._id,
+					session_id: session._id,
 				})
 			).redirect("/");  
     } catch (error) {

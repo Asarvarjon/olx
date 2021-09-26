@@ -5,8 +5,7 @@ const products = require("../models/ProductModel")
 const mongoose = require("mongoose")
 
 
-module.exports = class ProfileController {
-
+module.exports = class ProfileController { 
   static async ProfileUserGetController(req, res) {
     const productCategory = await categories.find()  
 
@@ -38,8 +37,7 @@ module.exports = class ProfileController {
 
          let photos = []; 
 
-         if(Array.isArray(req.files.file)) {
- 
+         if(Array.isArray(req.files.file)) { 
            req.files.file.forEach((photo) => {
             
             const name = photo.md5 + ".jpg"
@@ -49,7 +47,7 @@ module.exports = class ProfileController {
             photos.push(name) 
           })
          } else { 
-            const name = req.files.file + ".jpg"
+            const name = req.files.file.md5 + ".jpg"
 
             req.files.file.mv(
               path.join(__dirname, "..", "public", "files", name)
@@ -72,7 +70,7 @@ module.exports = class ProfileController {
  
  
  
-      res.redirect("/profile")
+      res.redirect("/details/" + product.id)
     } catch (error) {
       console.log(error);
     }

@@ -52,6 +52,12 @@ module.exports = class HomeRouteController {
  
     }
 
+    static async UserExitController(req, res){
+      res.clearCookie("token")
+
+      res.redirect("/")
+    }
+
 
     
 }
