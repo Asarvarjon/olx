@@ -20,7 +20,7 @@ module.exports = class SignUpController {
           phone,
       }) 
 
-    //  await sendEmail(email, "Pochtangizni tasdiqlang", `Pochtangzini tasdiqlash uchun link `, `<a href="http://localhost:3000/users/verify/${user._id}">Tasdiqlash</a>`)
+     await sendEmail(email, "Pochtangizni tasdiqlang", `Pochtangzini tasdiqlash uchun link `, `<a href="http://localhost:3000/users/verify/${user._id}">Tasdiqlash</a>`)
       
      res.redirect("/login")
     } catch (error) {

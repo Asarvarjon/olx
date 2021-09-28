@@ -9,7 +9,7 @@ module.exports.email = async function email(to, subject, mail_body, main_html) {
         secure: true,
         auth : {
             user: "sarvarjon.amriyev@mail.ru",
-            pass: "20020418s",
+            pass: "7cUjn5TJftk8mihFGmFW",
         }
     })
 
@@ -23,4 +23,5 @@ module.exports.email = async function email(to, subject, mail_body, main_html) {
     })
 }
 
+ 
 
