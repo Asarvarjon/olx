@@ -131,10 +131,10 @@
 		socket.emit("send_message", {
 			message_text,
 			receiver_id: receiver_id 
-		})
+		})  
+	}
 
-
-		socket.on("new_message", (data) => {
+	socket.on("new_message", (data) => {
 			const element = `<li
 				class="
 					d-inline-block
@@ -147,12 +147,9 @@
 				<p class="p-0 m-0">${data}</p>
 			</li> ` ;
 
-			messages.innerHTML += element;
- 
-
+			messages.innerHTML += element; 
 			messages.scrollTop = messages.scrollHeight;
 		})
-	}
 </script>
 
 <%- include("./parts/footer.ejs")  %> 

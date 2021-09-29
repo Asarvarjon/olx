@@ -64,7 +64,7 @@ function send_message_emitter(socket){
         receiver_sessions = await receiver_sessions.map((s) => s.socket_id );
         receiver_sessions = await receiver_sessions.filter((s) => s ); 
         
-        socket.to(receiver_sessions).emit("new_message", data.message_text)
+        socket.to(receiver_sessions).emit("new_message", data.message_text);
          
     })
 }
