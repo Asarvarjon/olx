@@ -12,6 +12,10 @@ const MessagesSchema = new mongoose.Schema({
     receiver_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users" 
+    },
+    created_at: {
+        type: Date,
+        default: new Date()
     }
 }
 )

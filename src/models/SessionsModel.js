@@ -12,7 +12,10 @@ const SessionsSchema = new mongoose.Schema({
     created_at: {
         type: Date,
         default: new Date(),
-    }
+    },
+    socket_id: {
+        type: String
+    },
 
 }
 )

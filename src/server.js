@@ -7,6 +7,10 @@ const databaseMiddleware = require("./middlewares/DatabaseMiddleware");
 const routes = require("./routes/routes");
 const UserMiddleware = require("./middlewares/UserMiddleware");
 
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+const socket = require("./modules/socket");
+
 const PORT = process.env.PORT || 3000;
 
 
@@ -14,7 +18,13 @@ const PORT = process.env.PORT || 3000;
 
 async function server() {
     const app = express();
-    app.listen(PORT, () => {
+    const httpServer = createServer(app);
+
+    const io = new Server(httpServer);
+
+    socket(io)
+
+    httpServer.listen(PORT, () => {
         console.log(`Server is ready at ${PORT}`);
     }); 
 
@@ -27,7 +37,7 @@ async function server() {
         }))
         app.use(cookieParser())
         app.use(express.static(path.join(__dirname, "public")))
-        // app.use(express.static(path.join(__dirname, "src", "public", "images")))
+        // app.use(express.static(path.join(__dirname, "node_modules", "socket.io", "client-dist")))
         app.use(databaseMiddleware)
         app.use(UserMiddleware)
 

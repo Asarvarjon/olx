@@ -16,4 +16,10 @@ module.exports = class Validations {
             password: Joi.string().min(4).required()
         }).validateAsync(data)
     }
+
+    static async MessagesValidation(data) {
+        return await Joi.object({ 
+            message_text: Joi.string().required().trim().max(1024).min(2).trim().error(new Error("Message is invalid")),  
+        }).validateAsync(data)
+    }
 }
